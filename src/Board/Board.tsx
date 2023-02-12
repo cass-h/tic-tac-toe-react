@@ -37,15 +37,14 @@ export function Board(props: { xStart: boolean }) {
     }
   }
 
-  function checkTiles(...cells: CellType[]) {
-    if (cells[0] !== null)
-      if (cells.every((cell) => cell === cells[0])) {
-        console.log(cells[0], " Wins");
-        setGameOver(true);
-      }
-  }
-
   useEffect(() => {
+    function checkTiles(...cells: CellType[]) {
+      if (cells[0] !== null)
+        if (cells.every((cell) => cell === cells[0])) {
+          console.log(cells[0], " Wins");
+          setGameOver(true);
+        }
+    }
     // check horizontals
     board.forEach((row) => {
       checkTiles(row[0], row[1], row[2]);

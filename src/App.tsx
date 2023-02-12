@@ -1,26 +1,17 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
 import { Board } from "./Board/Board";
 
 function App() {
+  const [x, setX] = useState<boolean>(true);
+  const Context = React.createContext(x);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Board xStart={true} />
+      <h1>Tic Tac Toe!</h1>
+      <p onClick={() => setX(!x)}>{x ? "X" : "O"}'s start</p>
+      <Context.Provider value={x}>
+        <Board xStart={x} />
+      </Context.Provider>
     </div>
   );
 }
